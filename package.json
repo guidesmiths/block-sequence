@@ -1,0 +1,33 @@
+{
+  "name": "block-sequence",
+  "version": "0.1.0",
+  "description": "A sequential id generator, which grabs blocks of ids rather than just one at a time",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests",
+    "lint": "eslint .",
+    "prepush": "npm run lint && npm test"
+  },
+  "keywords": [
+    "Block",
+    "Sequence",
+    "Id",
+    "Generator"
+  ],
+  "author": "GuideSmiths",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "debug": "^2.2.0",
+    "dot": "^1.0.3",
+    "lodash": "^4.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^0.24.1",
+    "eslint-config-imperative": "0.0.6",
+    "eslint-plugin-imperative": "0.0.2",
+    "block-sequence-reference": "0.1.0",
+    "husky": "^0.11.4",
+    "mocha": "^2.4.5"
+  }
+}
