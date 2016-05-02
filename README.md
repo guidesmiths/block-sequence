@@ -70,10 +70,10 @@ To add another driver please ensure it passes the block-sequence-compliance-test
         "environment": "l"
       }
     },
-    padding: {
+    "padding": {
       "size": 10
     },
-    template: "{{=sequence.metadata.system}}-{{=sequence.metadata.entity}}-{{=id}}-{{=sequence.metadata.environment}}"
+    "template": "{{=sequence.metadata.system}}-{{=sequence.metadata.entity}}-{{=id}}-{{=sequence.metadata.environment}}"
   }
 }
 ```
