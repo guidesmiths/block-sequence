@@ -57,8 +57,8 @@ To add another driver please ensure it passes the block-sequence-compliance-test
   "block": {
     "size": 100,
     "retry": {
-        limit: 1000,
-        interval: 100
+        "limit": 1000,
+        "interval": 100
     },
     "sequence": {
       "name": "job-vacancies",
@@ -71,7 +71,7 @@ To add another driver please ensure it passes the block-sequence-compliance-test
       }
     },
     padding: {
-        size: 10
+      "size": 10
     },
     template: "{{=sequence.metadata.system}}-{{=sequence.metadata.entity}}-{{=id}}-{{=sequence.metadata.environment}}"
   }
