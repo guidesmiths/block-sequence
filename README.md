@@ -2,7 +2,6 @@
 A sequential id generator, which grabs blocks of ids rather than just one at a time.
 
 ## tl;dr
-## Usage
 ```js
 var BlockArray = require('block-sequence').BlockArray
 var init = require('block-sequence-mysql')
@@ -53,8 +52,11 @@ Yes. That's why block-sequence reads blocks of ids, and recharges exhausted bloc
 ## How are the sequences stored?
 block-sequence uses plugable drivers to keep track of sequences. The current drivers are
 
-1. block-sequence-reference (in-memory reference implementation, only useful for testing)
-2. block-sequence-redis (redis implementation)
+1. [block-sequence-reference](https://www.npmjs.com/package/block-sequence-reference) (in-memory reference implementation, only useful for testing)
+2. [block-sequence-redis](https://www.npmjs.com/package/block-sequence-redis)
+3. [block-sequence-mysql](https://www.npmjs.com/package/block-sequence-mysql)
+4. [block-sequence-postgres](https://www.npmjs.com/package/block-sequence-postgres)
+5. [block-sequence-foxpro](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 To add another driver please ensure it passes the block-sequence-compliance-tests
 
