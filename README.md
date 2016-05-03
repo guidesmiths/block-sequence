@@ -1,5 +1,5 @@
 # block-sequence
-A sequential id generator, which grabs blocks of ids rather than just one at a time.
+A sequential id generator, which grabs blocks of ids rather than just one at a time. You can configure active/passive blocks and rotate through them, recharging exhausted blocks in the background while assigning ids from the active one.
 
 ## tl;dr
 ```js
@@ -94,6 +94,17 @@ The padding and [doT.js](http://olado.github.io/doT/index.html) template will ca
 
 ## Driver Configuration
 See the specific driver readme for how to configure the drivers
+
+## Events
+BlockArray emits the following events
+
+### Error
+When a block repeatedly fails to recharge and error event is emitted.
+
+### Blocking
+The active block always queues id requests, but will usually service them immediately afterwards. When a block is exhausted the next block in the array becomes active and is used to service future id requests, allowing the original block to recharge. During recharge the block's queue is paused. If all other blocks in the array are exhausted before recharge is complete then further id requests will be queued and a 'blocking' event emitted. If you experience this try increasing the block size.
+
+Please note: Since the blocks recharge on startup, but you can start issuing id requests immediately you may receive blocking events while the block array is initialising.
 
 
 

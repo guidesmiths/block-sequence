@@ -92,14 +92,50 @@ describe('BlockArray', function() {
         })
     })
 
+    it('should emit a blocking event when queueing', function(done) {
+        var block = new BlockArray({
+            block: {
+                driver: slowDriver,
+                size: 1,
+                sequence: {
+                    name: 'block-tests'
+                },
+                retry: {
+                    limit: 10,
+                    interval: 1
+                }
+            }
+        }).once('blocking', function(sequence) {
+            assert.equal(sequence.name, 'block-tests')
+            done()
+        })
+
+        async.times(3, function(n, cb) {
+            block.next(cb)
+        })
+    })
+
     var badDriver = {
         ensure: function(options, cb) {
             this.attempts = 0
-            cb(null, { name: 'bad-sequence' })
+            cb(null, options)
         },
         allocate: function(options, cb) {
             this.attempts++
             cb(new Error('Failed to charge'))
+        }
+    }
+
+    var slowDriver = {
+        ensure: function(options, cb) {
+            this.attempts = 0
+            cb(null, options)
+        },
+        allocate: function(options, cb) {
+            this.attempts++
+            setTimeout(function() {
+                cb(null, { name: options.name, value: 100 })
+            }, 1000)
         }
     }
 
