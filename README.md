@@ -1,5 +1,5 @@
 # block-sequence
-A sequential id generator, which grabs blocks of ids rather than just one at a time. You can configure active/passive blocks and rotate through them, recharging exhausted blocks in the background while assigning ids from the active one.
+A sequential id generator, which grabs blocks of ids rather than just one at a time. You can configure active/passive blocks and rotate through them, recharging exhausted blocks in the background while assigning ids from the active one. Driver implementations exist for mongo, redis, mysql and postgres.
 
 ## tl;dr
 ```js
