@@ -53,10 +53,11 @@ Yes. That's why block-sequence reads blocks of ids, and recharges exhausted bloc
 block-sequence uses plugable drivers to keep track of sequences. The current drivers are
 
 1. [block-sequence-reference](https://www.npmjs.com/package/block-sequence-reference) (in-memory reference implementation, only useful for testing)
-2. [block-sequence-redis](https://www.npmjs.com/package/block-sequence-redis)
-3. [block-sequence-mysql](https://www.npmjs.com/package/block-sequence-mysql)
-4. [block-sequence-postgres](https://www.npmjs.com/package/block-sequence-postgres)
-5. [block-sequence-foxpro](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+2. [block-sequence-mongo](https://www.npmjs.com/package/block-sequence-mongo)
+3. [block-sequence-redis](https://www.npmjs.com/package/block-sequence-redis)
+4. [block-sequence-mysql](https://www.npmjs.com/package/block-sequence-mysql)
+5. [block-sequence-postgres](https://www.npmjs.com/package/block-sequence-postgres)
+6. [block-sequence-foxpro](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 To add another driver please ensure it passes the block-sequence-compliance-tests
 
