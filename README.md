@@ -47,7 +47,7 @@ Yes. That's why block-sequence reads blocks of ids, and recharges exhausted bloc
 
 ## What are the caveats?
 1. Ids cannot be used to sort records by age (you probably shouldn't do this anyway)
-2. When block-sequence initialises it charges it's id blocks immediately. If you node app crashes and restarts repeatedly you will end up burning through ids very quickly.
+2. When block-sequence initialises it charges its id blocks immediately. If you node app crashes and restarts repeatedly you will end up burning through ids very quickly. You can disable this behaviour by setting "prime" to false in the block configuration, however doing so will mean the first id request will incur a small delay. Even when setting "prime" to false you may burn through ids very quickly if something your application crashes and restarts repeatedly after the first id request.
 
 ## How are the sequences stored?
 block-sequence uses plugable drivers to keep track of sequences. The current drivers are
@@ -67,6 +67,7 @@ To add another driver please ensure it passes the block-sequence-compliance-test
 {
   "size": 2,
   "block": {
+    "prime": true,
     "size": 100,
     "retry": {
       "limit": 1000,
@@ -89,7 +90,7 @@ To add another driver please ensure it passes the block-sequence-compliance-test
   }
 }
 ```
-The above configuration will configure a block array containing two blocks. The blocks of 100 ids each. When the first block drains completely the array will start drawing from the second block and the first block will be recharged. The recharging process will automatically retry up to 1000 times at 100ms intervals.
+The above configuration will prime a block array containing two blocks of 100 ids each. When the first block drains completely the array will start drawing from the second block and the first block will be recharged. The recharging process will automatically retry up to 1000 times at 100ms intervals.
 
 The padding and [doT.js](http://olado.github.io/doT/index.html) template will cause ```blockArray.next``` to yield an id similar to ```jbs-vac-0000001234-l```
 
