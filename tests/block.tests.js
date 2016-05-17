@@ -6,9 +6,10 @@ var async = require('async')
 describe('Block', function() {
 
     var driver
+    var store = {}
 
     beforeEach(function(done) {
-        bsr({}, function(err, _driver) {
+        bsr({ store: store }, function(err, _driver) {
             if (err) return done(err)
             driver = _driver
             done()
@@ -31,6 +32,80 @@ describe('Block', function() {
             assert.equal(err.message, 'sequence name is required')
             done()
         })
+    })
+
+    it('should prime blocks by default', function(done) {
+        var blocked = false
+        var block = new Block({
+            driver: driver,
+            size: 10,
+            sequence: {
+                name: 'block-tests'
+            }
+        })
+
+        block.on('ready', function() {
+            block.next(function(err, id) {
+                assert.ifError(err)
+                assert.equal(id, 1)
+                assert.ok(!blocked)
+                done()
+            })
+        }).on('blocking', function() {
+            blocked = true
+        })
+    })
+
+
+    it('should prime blocks when explicitly enabled', function(done) {
+        var blocked = false
+        var block = new Block({
+            driver: driver,
+            prime: true,
+            size: 10,
+            sequence: {
+                name: 'block-tests'
+            }
+        })
+
+        block.on('ready', function() {
+            block.next(function(err, id) {
+                assert.ifError(err)
+                assert.equal(id, 1)
+                assert.ok(!blocked)
+                done()
+            })
+        }).on('blocking', function() {
+            blocked = true
+        })
+    })
+
+    it('should not prime blocks when explicitly disabled', function(done) {
+        var blocked = false
+        var block = new Block({
+            driver: driver,
+            prime: false,
+            size: 10,
+            sequence: {
+                name: 'block-tests'
+            }
+        })
+
+        block.on('ready', function() {
+            assert.ok(false, 'Block should not have been primed')
+        }).on('blocking', function() {
+            blocked = true
+        })
+
+        setTimeout(function() {
+            block.removeAllListeners('ready')
+            block.next(function(err, id) {
+                assert.ifError(err)
+                assert.equal(id, 1)
+                assert.ok(blocked)
+                done()
+            })
+        }, 200)
     })
 
     it('should provide sequential ids', function(done) {
@@ -169,5 +244,4 @@ describe('Block', function() {
             cb(new Error('Failed to charge'))
         }
     }
-
 })
