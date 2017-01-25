@@ -6,6 +6,8 @@
   "scripts": {
     "test": "mocha",
     "lint": "eslint .",
+    "istanbul": "istanbul cover --report html --report lcov _mocha",
+    "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
     "prepush": "npm run lint && npm test"
   },
   "keywords": [
