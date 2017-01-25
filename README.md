@@ -39,7 +39,7 @@ init({ host: '127.0.0.1', database: 'bs_test', user: 'root' }, (err, driver) => 
 UUIDs a great for creating unique ids in a distributed environment without a shared persistent storge. Unfortunately they look horrible and aren't very user friendly if you need to read them out to anyone.
 
 ## Why not use something like shortId
-I like shortId, but in a multi process / multi host architecture you need to congure each process with a unique worker id. There are also limitations on alphabet making it likely you'll need to use mixed case letters. This can cause problems for MySQL which is case insenstive by defaults and doesn't have a case sensitive utf-8 character set, meaning you have to do horrible things like use different character sets for id columns and data columns in the same table.
+I like shortId, but in a multi process / multi host architecture you need to configure each process with a unique worker id. There are also limitations on alphabet making it likely you'll need to use mixed case letters. This can cause problems for MySQL which is case insenstive by default and doesn't have a case sensitive utf-8 character set, meaning you have to do horrible things like use different character sets for id columns and data columns in the same table.
 
 ## Should I use strings or integers for Ids?
 Unless performance is a genuine concern I choose strings, and make it obvious that they are strings by prefixing them with some alphabetic characters. The reasons to avoid integers are...
@@ -56,7 +56,8 @@ Yes. That's why block-sequence reads blocks of ids, and recharges exhausted bloc
 
 ## What are the caveats?
 1. Ids cannot be used to sort records by age (you probably shouldn't do this anyway)
-2. When block-sequence initialises it charges its id blocks immediately. If you node app crashes and restarts repeatedly you will end up burning through ids very quickly. You can disable this behaviour by setting "prime" to false in the block configuration, however doing so will mean the first id request will incur a small delay. Even when setting "prime" to false you may burn through ids very quickly if something your application crashes and restarts repeatedly after the first id request.
+
+2. When block-sequence initialises it charges its id blocks immediately. If your node app crashes and restarts repeatedly you will end up burning through ids very quickly. You can disable this behaviour by setting "prime" to false in the block configuration, however doing so will mean the first id request will incur a small delay. Even when setting "prime" to false you may burn through ids very quickly if your application crashes and restarts repeatedly after the first id request.
 
 ## How are the sequences stored?
 block-sequence uses plugable drivers to keep track of sequences. The current drivers are
