@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "block-sequence",
   "version": "1.0.0",
   "description": "A sequential id generator, which grabs blocks of ids rather than just one at a time",
   "main": "index.js",
