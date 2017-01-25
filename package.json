@@ -1,6 +1,6 @@
 {
   "name": "y",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "A sequential id generator, which grabs blocks of ids rather than just one at a time",
   "main": "index.js",
   "scripts": {
