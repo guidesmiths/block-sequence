@@ -1,24 +1,33 @@
 # block-sequence
 A sequential id generator, which grabs blocks of ids rather than just one at a time. You can configure active/passive blocks and rotate through them, recharging exhausted blocks in the background while assigning ids from the active one. Driver implementations exist for mongo, redis, mysql and postgres.
 
+[![NPM version](https://img.shields.io/npm/v/block-sequence.svg?style=flat-square)](https://www.npmjs.com/package/block-sequence)
+[![NPM downloads](https://img.shields.io/npm/dm/block-sequence.svg?style=flat-square)](https://www.npmjs.com/package/block-sequence)
+[![Build Status](https://img.shields.io/travis/guidesmiths/block-sequence/master.svg)](https://travis-ci.org/guidesmiths/block-sequence)
+[![Code Climate](https://codeclimate.com/github/guidesmiths/block-sequence/badges/gpa.svg)](https://codeclimate.com/github/guidesmiths/block-sequence)
+[![Test Coverage](https://codeclimate.com/github/guidesmiths/block-sequence/badges/coverage.svg)](https://codeclimate.com/github/guidesmiths/block-sequence/coverage)
+[![Code Style](https://img.shields.io/badge/code%20style-imperative-brightgreen.svg)](https://github.com/guidesmiths/eslint-config-imperative)
+[![Dependency Status](https://david-dm.org/guidesmiths/block-sequence.svg)](https://david-dm.org/guidesmiths/block-sequence)
+[![devDependencies Status](https://david-dm.org/guidesmiths/block-sequence/dev-status.svg)](https://david-dm.org/guidesmiths/block-sequence?type=dev)
+
 ## tl;dr
 ```js
-var BlockArray = require('block-sequence').BlockArray
-var init = require('block-sequence-mysql')
+const BlockArray = require('block-sequence').BlockArray
+const init = require('block-sequence-mysql')
 
 // Initialise the MySql Block Sequence Driver. Other drivers are available
-init({ host: '127.0.0.1', database: 'bs_test', user: 'root' }, function(err, driver) {
+init({ host: '127.0.0.1', database: 'bs_test', user: 'root' }, (err, driver) => {
     if (err) throw err
 
     // Ensure the sequence exists
-    driver.ensure({ name: 'my-sequence' }, function(err, sequence) {
+    driver.ensure({ name: 'my-sequence' }, (err, sequence) => {
         if (err) throw err
 
         // Create a block array containing 1000 ids per block (defaults to 2 blocks)
         var idGenerator = new BlockArray({ block: { sequence: sequence, driver: driver, size: 1000 } })
 
         // Grab the next id
-        idGenerator.next(function(err, id) {
+        idGenerator.next((err, id) => {
             if (err) throw err
             console.log(id)
         })
@@ -37,7 +46,7 @@ Unless performance is a genuine concern I choose strings, and make it obvious th
 
 1. In a non type safe language like JavaScript frameworks such as express, and datastores such as redis return data as string. This causes havoc when you attempt to retrieve a record from mongo, without parsing the id first.
 
-2. If you only use numbers a malicious script or accidental programming mistake could burn through ids very rapidly. If you've prefixed your ids with a string, you can change the prefix and reset the sequence.
+2. If you only use numbers a malicious script or programming error could burn through ids very rapidly. If you've prefixed your ids with a string, you can change the prefix and reset the sequence.
 
 ## What string format should I use?
 I use ```<system>-<entity>-<left padded sequence number>-<environment>```, i.e. if I were developing a Jobs board and wanted an id generator for vacancies in the live environment an example id would be ```jbs-vac-00070012-l```. block-sequence lets you do just this.
@@ -60,7 +69,6 @@ block-sequence uses plugable drivers to keep track of sequences. The current dri
 6. [block-sequence-foxpro](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 To add another driver please ensure it passes the block-sequence-compliance-tests
-
 
 ## BlockArray Configuration
 ```json
