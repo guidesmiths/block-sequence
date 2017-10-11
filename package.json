@@ -20,19 +20,19 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.1.4",
-    "debug": "^2.6.0",
+    "debug": "^3.1.0",
     "dot": "^1.1.1",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
     "block-sequence-reference": "0.1.0",
-    "codeclimate-test-reporter": "^0.4.0",
-    "eslint": "^3.12.2",
-    "eslint-config-imperative": "^1.0.0",
-    "eslint-plugin-imperative": "^1.0.0",
-    "husky": "^0.13.0",
+    "codeclimate-test-reporter": "^0.5.0",
+    "eslint": "^4.8.0",
+    "eslint-config-imperative": "^2.0.1",
+    "eslint-plugin-imperative": "^2.0.0",
+    "husky": "^0.14.3",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
+    "mocha": "^4.0.0"
   },
   "directories": {
     "test": "test"

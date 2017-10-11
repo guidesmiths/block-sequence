@@ -1,4 +1,6 @@
 # block-sequence
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/guidesmiths/block-sequence.svg)](https://greenkeeper.io/)
 A sequential id generator, which grabs blocks of ids rather than just one at a time. You can configure active/passive blocks and rotate through them, recharging exhausted blocks in the background while assigning ids from the active one. Driver implementations exist for mongo, redis, mysql and postgres.
 
 [![NPM version](https://img.shields.io/npm/v/block-sequence.svg?style=flat-square)](https://www.npmjs.com/package/block-sequence)
