@@ -1,8 +1,9 @@
 # Change Log
 
-## [Unrelased]
+## [1.1.0]
 ### Changed
 - Update build targets
+- Update dependencies
 
 ## [1.0.0]
 ### Changed
