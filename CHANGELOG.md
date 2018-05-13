@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.1]
+### Changed
+- Fixed tests broken by mocha 5.0.2
+
 ## [1.1.0]
 ### Changed
 - Update build targets

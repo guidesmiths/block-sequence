@@ -20,16 +20,23 @@ describe('BlockArray', function() {
     })
 
     it('should require a driver', function(done) {
-        new BlockArray({}).once('error', function(err) {
+        var count = 0
+        new BlockArray({}).on('error', function(err) {
             assert.equal(err.message, 'driver is required')
-            done()
+            count++
+            assert.ok(count <= 2)
+            if (count === 2) done()
+
         })
     })
 
     it('should require a sequence name', function(done) {
-        new BlockArray({ block: { driver: driver } }).once('error', function(err) {
+        var count = 0
+        new BlockArray({ block: { driver: driver } }).on('error', function(err) {
             assert.equal(err.message, 'sequence name is required')
-            done()
+            count++
+            assert.ok(count <= 2)
+            if (count === 2) done()
         })
     })
 
