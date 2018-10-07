@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.2.0]
+### Update dependencies
+
 ## [1.1.1]
 ### Changed
 - Fixed tests broken by mocha 5.0.2
