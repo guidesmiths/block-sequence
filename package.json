@@ -4,7 +4,7 @@
   "description": "A sequential id generator, which grabs blocks of ids rather than just one at a time",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha test",
     "lint": "eslint .",
     "coverage": "nyc --report html --reporter lcov --reporter text-summary mocha test",
     "codeclimate": "(test -e .codeclimate && npm run coverage && source .codeclimate) || echo skipping codeclimate",
