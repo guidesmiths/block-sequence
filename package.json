@@ -20,7 +20,7 @@
   "author": "GuideSmiths",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.6.2",
+    "async": "^3.0.1",
     "debug": "^4.1.1",
     "dot": "^1.1.2",
     "lodash.defaultsdeep": "^4.6.0",
